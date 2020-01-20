@@ -1,0 +1,109 @@
+body {
+  background-color: #373055;
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 15px;
+}
+
+/* header */
+.banner {
+  padding: 1.25rem 1rem;
+  margin-bottom: 1rem;
+  background-color: #9D2FA2;
+  color: #ffffff;
+  text-align: center;
+  font-family: serif;
+  font-size: 2em;
+}
+
+/* input form */
+.search-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-form {
+  text-align: center;
+  color: white;
+  margin-bottom: 2.5rem;
+}
+
+input[type="text"] {
+  height: 3.5rem;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #A29DB2;
+  border: none;
+  border-radius: .25rem;
+  font-size: 16px;
+  padding-left: .75rem;
+  padding-top: 1rem;
+}
+
+.sub-input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sub-input-container div {
+  width: 48%;
+}
+
+.no-words {
+  color: white;
+}
+
+.label-style {
+  position: relative;
+  margin: 0px 0px 20px 0px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.label-text {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  color: #373055;
+  transition: 0.2s;
+  z-index: 1;
+}
+
+/* float label*/
+form.float-top input:empty + label
+  {
+  bottom: 100%;
+  width: 90%;
+  left: 10px;
+  top: 5px;
+  margin-bottom: -16px;
+  font-size: 14px;
+  line-height: 17px;
+  color: #373055;
+  text-align: left;
+  padding: 0;
+}
+
+button {
+  float: right;
+  height: 2.5rem;
+  width: 5rem;
+  font-size: 16px;
+  border-radius: .25rem;
+  background-color: #3DB57F;
+  margin: .25rem;
+}
+
+button:hover {
+  opacity: .75;
+}
