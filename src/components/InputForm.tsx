@@ -7,7 +7,7 @@ export interface Letters {
 }
 
 interface Props {
-  updateLetters: (arg0: object) => void;
+  updateLetters: (arg0: Letters) => void;
 }
 
 class InputForm extends React.Component<Props, {}> {
