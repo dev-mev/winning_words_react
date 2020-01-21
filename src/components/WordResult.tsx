@@ -4,8 +4,8 @@ import Definition from "./Definition";
 import { Letters } from "./InputForm";
 
 interface Props {
-  updateLetters: Function;
-  updateWords: Function;
+  updateLetters: (arg0: object) => void;
+  updateWords: (arg0: string) => void;
   letters: Letters;
 }
 

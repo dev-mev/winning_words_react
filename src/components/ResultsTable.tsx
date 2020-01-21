@@ -3,7 +3,7 @@ import WordResult from "./WordResult";
 import { Letters } from "./InputForm";
 
 interface Props {
-  updateLetters: Function;
+  updateLetters: (arg0: object) => void;
   letters: Letters;
 }
 
