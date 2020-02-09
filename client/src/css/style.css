@@ -107,3 +107,45 @@ button {
 button:hover {
   opacity: .75;
 }
+
+.search-results-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3.5rem;
+}
+
+.search-result-button {
+  width: 100%;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}
+
+.search-result-button:focus {
+  outline: none !important;
+  border:1px solid #3DB57F;
+}
+
+.search-result {
+  background-color: #4E4473;
+  color: #A29DB2;
+  font-size: 20px;
+  height: 35px;
+  margin: 1px 0;
+  text-align: center;
+  padding-top: 10px;
+  justify-content: center;
+}
+
+.search-result:focus {
+  outline-color: none;
+}
+
+.definition {
+  background-color: #443A66;
+  padding: .5rem;
+  color: #A29DB2;
+  margin: 1px;
+  text-align: left;
+  padding: 20px;
+}

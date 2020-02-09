@@ -1,13 +1,10 @@
 import React, { FormEvent } from "react";
 
-export interface Letters {
+interface Props {
+  updateLetters: (o: string[], r: string[], e: string[]) => void;
   optional: string[];
   required: string[];
   excluded: string[];
-}
-
-interface Props {
-  updateLetters: (arg0: Letters) => void;
 }
 
 class InputForm extends React.Component<Props, {}> {
@@ -15,20 +12,17 @@ class InputForm extends React.Component<Props, {}> {
   requiredLettersRef = React.createRef<HTMLInputElement>();
   excludedLettersRef = React.createRef<HTMLInputElement>();
 
-  findWords = (e: FormEvent): void => {
+  getUserLetters = (e: FormEvent): void => {
     e.preventDefault();
-    const letters: Letters = {
-      optional: this.optionalLettersRef!.current!.value.split(""),
-      required: this.requiredLettersRef!.current!.value.split(""),
-      excluded: this.excludedLettersRef!.current!.value.split("")
-    };
-    console.log(letters);
-    this.props.updateLetters(letters);
+    const optional = this.optionalLettersRef!.current!.value.split("");
+    const required = this.requiredLettersRef!.current!.value.split("");
+    const excluded = this.excludedLettersRef!.current!.value.split("");
+    this.props.updateLetters(optional, required, excluded);
   };
 
   render() {
     return (
-      <form className="search-form float-top" onSubmit={this.findWords}>
+      <form className="search-form float-top" onSubmit={this.getUserLetters}>
         <div className="label-style">
           <input
             type="text"

@@ -1,4 +1,5 @@
 import wordDictionary from "../data/wordList.json";
+import Word from "../models/WordModel";
 
 export function wordContainsAll(word: string, letters: string[]): boolean {
   let upperCaseWord = word.toUpperCase();
@@ -69,9 +70,9 @@ export function computeScore(
 
 export function getWords(
   letters: string[],
-  exclude: string[],
-  include: string[]
-): object[] {
+  include: string[],
+  exclude: string[]
+): Word[] {
   const matchingWords = [];
 
   for (let i = 0; i < wordDictionary.length; i++) {
