@@ -3,7 +3,7 @@ import { getWords } from "../services/words";
 
 const router = express.Router();
 
-router.get("/words", (req: any, res) => {
+router.get("/words", (req: any, res: any) => {
   const optional = req.query.optional || "";
   const required = req.query.required || "";
   const excluded = req.query.excluded || "";
