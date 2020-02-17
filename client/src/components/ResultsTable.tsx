@@ -1,23 +1,22 @@
 import React from "react";
 import WordResult from "./WordResult";
-import WordModel from "../models/WordModel";
 
 interface Props {
-  matchingWords: WordModel[];
+  matchingWords: string[];
 }
 
 class ResultsTable extends React.Component<Props, {}> {
   render() {
-    const renderEachWord: any = (this.props.matchingWords as WordModel[]).map(item => {
+    const renderEachWord: any = (this.props.matchingWords as string[]).map(item => {
       return (
         <WordResult
-          key={item.word}
-          word={item.word}
+          key={item}
+          word={item}
         />
       );
     });
 
-    return <div className="search-result-button">{renderEachWord}</div>;
+    return <div>{renderEachWord}</div>;
   }
 }
 

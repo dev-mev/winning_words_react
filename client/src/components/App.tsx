@@ -1,19 +1,19 @@
 import React from "react";
 import InputForm from "./InputForm";
 import ResultsTable from "./ResultsTable";
-import { getWords } from "../services/words";
-import WordModel from "../models/WordModel";
+import Loader from "react-loader-spinner";
 
 class App extends React.Component {
   state = {
-    optional: [],
-    required: [],
-    excluded: []
+    optional: "",
+    required: "",
+    excluded: "",
+    isLoading: false
   };
 
-  matchingWords: WordModel[] = [];
+  matchingWords: string[] = [];
 
-  updateLetters = (o: string[], r: string[], e: string[]): void => {
+  updateLetters = (o: string, r: string, e: string): void => {
     this.setState({
       optional: o,
       required: r,
@@ -23,8 +23,23 @@ class App extends React.Component {
     this.updateWords(o, r, e);
   };
 
-  updateWords = (o: string[], r: string[], e: string[]): void => {
-    this.matchingWords = getWords(o, r, e);
+  updateWords = (o: string, r: string, e: string): any => {
+    fetch(`/api/words?optional=${encodeURIComponent(o)}&required=${encodeURIComponent(r)}&excluded=${encodeURIComponent(e)}`)
+    .then(res => res.json())
+    .then(text => {
+      this.matchingWords = text;
+      this.setState({
+        isLoading: false
+      });
+    });
+  };
+
+  clearWords = (): void => {
+    this.matchingWords = [];
+  }
+
+  updateLoading = (): void => {
+    this.setState({ isLoading: true });
   };
 
   render() {
@@ -37,8 +52,21 @@ class App extends React.Component {
             optional={this.state.optional}
             required={this.state.required}
             excluded={this.state.excluded}
+            updateLoading={this.updateLoading}
+            clearWords={this.clearWords}
           />
           <div className="search-results-container">
+          <div className="loader">
+            {this.state.isLoading ? (
+              <Loader
+                type="Puff"
+                color="#620808"
+                height={100}
+                width={100}
+                timeout={100000}
+              />
+            ) : null}
+          </div>
             <ResultsTable matchingWords={this.matchingWords} />
           </div>
         </div>

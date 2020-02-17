@@ -1,10 +1,12 @@
 import React, { FormEvent } from "react";
 
 interface Props {
-  updateLetters: (o: string[], r: string[], e: string[]) => void;
-  optional: string[];
-  required: string[];
-  excluded: string[];
+  updateLetters: (o: string, r: string, e: string) => void;
+  optional: string;
+  required: string;
+  excluded: string;
+  updateLoading: () => void;
+  clearWords: () => void;
 }
 
 class InputForm extends React.Component<Props, {}> {
@@ -14,9 +16,11 @@ class InputForm extends React.Component<Props, {}> {
 
   getUserLetters = (e: FormEvent): void => {
     e.preventDefault();
-    const optional = this.optionalLettersRef!.current!.value.split("");
-    const required = this.requiredLettersRef!.current!.value.split("");
-    const excluded = this.excludedLettersRef!.current!.value.split("");
+    this.props.clearWords();
+    this.props.updateLoading();
+    const optional = this.optionalLettersRef!.current!.value;
+    const required = this.requiredLettersRef!.current!.value;
+    const excluded = this.excludedLettersRef!.current!.value;
     this.props.updateLetters(optional, required, excluded);
   };
 
@@ -30,7 +34,7 @@ class InputForm extends React.Component<Props, {}> {
             ref={this.optionalLettersRef}
           ></input>
           <label className="label-text" htmlFor="optional-letters">
-            Letters
+            Optional Letters
           </label>
         </div>
 
@@ -42,7 +46,7 @@ class InputForm extends React.Component<Props, {}> {
               ref={this.requiredLettersRef}
             ></input>
             <label className="label-text" htmlFor="required-letters">
-              Must Include
+              Must Include Letters
             </label>
           </div>
           <div className="label-style">
@@ -52,12 +56,14 @@ class InputForm extends React.Component<Props, {}> {
               ref={this.excludedLettersRef}
             ></input>
             <label className="label-text" htmlFor="excluded-letters">
-              Must Exclude
+              Must Exclude Letters
             </label>
           </div>
         </div>
 
-        <button type="submit">Submit</button>
+        <button type="submit" className="submit-button">
+          Submit
+        </button>
       </form>
     );
   }

@@ -1,5 +1,4 @@
 import wordDictionary from "../data/wordList.json";
-import Word from "../models/WordModel";
 
 export function wordContainsAll(word: string, letters: string[]): boolean {
   let upperCaseWord = word.toUpperCase();
@@ -72,7 +71,7 @@ export function getWords(
   letters: string[],
   include: string[],
   exclude: string[]
-): Word[] {
+): string[] {
   const matchingWords = [];
 
   for (let i = 0; i < wordDictionary.length; i++) {
@@ -82,20 +81,21 @@ export function getWords(
     if (wordContainsAll(currentWord, include)) {
       if (exclude.length > 0) {
         if (!wordContainsAny(currentWord, exclude)) {
-          matchingWords.push({ word: currentWord });
+          matchingWords.push(currentWord);
         }
       } else {
-        matchingWords.push({ word: currentWord });
+        matchingWords.push(currentWord);
       }
     }
   }
 
   // score and sort all matching words
   matchingWords.sort(
-    (a, b) => computeScore(b.word, letters) - computeScore(a.word, letters)
+    (a, b) => computeScore(b, letters) - computeScore(a, letters)
   );
 
   // return first thousand results
   const maxResults = 200;
+
   return matchingWords.slice(0, maxResults || 500);
 }

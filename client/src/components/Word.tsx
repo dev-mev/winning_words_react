@@ -8,12 +8,12 @@ interface Props {
 class Word extends React.Component<Props, {}> {
   render() {
     return (
-      <div
+      <button
         className="search-result"
         onClick={() => this.props.getDefinition(this.props.word)}
       >
         {this.props.word}
-      </div>
+      </button>
     );
   }
 }
