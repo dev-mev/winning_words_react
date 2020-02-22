@@ -11,10 +11,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api", dictionaryApi);
 app.use("/api", wordsApi);
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-app.get('/', function(req: any, res: any) {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
