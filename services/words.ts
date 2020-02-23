@@ -94,7 +94,7 @@ export function getWords(
     (a, b) => computeScore(b, letters) - computeScore(a, letters)
   );
 
-  // return first thousand results
+  // return first 200 results
   const maxResults = 200;
 
   return matchingWords.slice(0, maxResults || 500);

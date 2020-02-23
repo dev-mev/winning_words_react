@@ -5,7 +5,7 @@ require("dotenv").config();
 
 const router = express.Router();
 
-router.get("/dictionary/:word", (req: any, res: any) => {
+router.get("/dictionary/:word", (req: express.Request, res: express.Response) => {
   const baseUrl = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/";
   axios.get(`${baseUrl}${encodeURIComponent(req.params.word)}?key=${process.env.API_KEY}`)
     .then((response) => {
